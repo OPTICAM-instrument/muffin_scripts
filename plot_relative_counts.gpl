@@ -1,0 +1,3 @@
+set xlabel "# Frame"
+set ylabel "Relative counts"
+pl "test" u ($1):($2-$3)/($4-$3) w lp ti "Target / Star 1" lw 1.0,"" u ($1):(($5-$3)/($4-$3)) w l ti "Star 2 / Star 1" lw 1.0
