@@ -26,10 +26,10 @@ def compress_and_transfer_folder(hostname, username, remote_folder_path, local_d
 def trasnfer_folder(hostname, username, remote_folder_path, local_destination):
     try:
         # Transfer the compressed file to the local machine using scp
-        scp_command = f'scp -p "opticam" {username}@{hostname}:{remote_folder_path} {local_destination}'
-        os.system(scp_command)
+        scp_command = f'scp -r {username}@{hostname}:{remote_folder_path} {local_destination}'
+        ex = os.system(scp_command)
 
-        print(f"Folder '{remote_folder_path}' transferred successfully.")
+        print(f"Folder '{remote_folder_path}' transferred successfully. exit with{ex}")
 
     except Exception as e:
         print(f"Error: {e}")
@@ -48,7 +48,7 @@ def compress_local_folder(local_folder_path, local_destination):
 def remove_local_folder(local_folder_path):
     try:
         # Compress the folder on the remote machine
-        compress_command = f'rm -rf {local_folder_path}'
+        compress_command = f'rm -r {local_folder_path}'
         os.system(compress_command)
 
         print(f"Folder '{local_folder_path}' removed successfully.")
