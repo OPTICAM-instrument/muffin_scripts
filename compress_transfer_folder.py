@@ -26,7 +26,7 @@ def compress_and_transfer_folder(hostname, username, remote_folder_path, local_d
 def trasnfer_folder(hostname, username, remote_folder_path, local_destination):
     try:
         # Transfer the compressed file to the local machine using scp
-        scp_command = f'scp {username}@{hostname}:{remote_folder_path} {local_destination}'
+        scp_command = f'scp -p "opticam" {username}@{hostname}:{remote_folder_path} {local_destination}'
         os.system(scp_command)
 
         print(f"Folder '{remote_folder_path}' transferred successfully.")
@@ -101,6 +101,6 @@ if __name__ == "__main__":
         # compress_and_transfer_folder(hostname, username, remote_folder_path, local_destination)
         trasnfer_folder(hostname, username, remote_folder_path, local_destination)
         compress_local_folder(local_file_path, local_destination)
-        remove_local_folder(local_destination)
-        remove_remote_folder(hostname, username, remote_folder_path)
+        #remove_local_folder(local_destination)
+        #remove_remote_folder(hostname, username, remote_folder_path)
 
