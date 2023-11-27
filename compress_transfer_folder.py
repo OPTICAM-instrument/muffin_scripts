@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     # use the day of the starting night to determine the folder name
     # check if the folder exist if not create it
-    folder_name = f'/backup_images/opticam/{observing_night}/
+    folder_name = f'/backup_images/opticam/{observing_night}/'
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
         # report it
