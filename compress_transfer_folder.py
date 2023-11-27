@@ -35,10 +35,12 @@ def trasnfer_folder(hostname, username, remote_folder_path, local_destination):
     except Exception as e:
         print(f"Error: {e}")
 
-def compress_local_folder(local_folder_path, local_destination):
+def compress_local_folder(local_file_path, local_destination):
+
     try:
         # Compress the folder on the remote machine
-        compress_command = f'tar -czf {local_destination}.tar.gz {local_folder_path}'
+        compress_command = f'tar -czf {local_file_path} {local_destination}'
+        print(compress_command)
         os.system(compress_command)
 
         print(f"Folder '{local_folder_path}' compressed successfully.")
@@ -102,6 +104,7 @@ if __name__ == "__main__":
         # compress_and_transfer_folder(hostname, username, remote_folder_path, local_destination)
         trasnfer_folder(hostname, username, remote_folder_path, local_destination)
         compress_local_folder(local_file_path, local_destination)
+
         #remove_local_folder(local_destination)
         #remove_remote_folder(hostname, username, remote_folder_path)
 
