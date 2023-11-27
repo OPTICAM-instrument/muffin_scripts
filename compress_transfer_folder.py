@@ -27,6 +27,7 @@ def trasnfer_folder(hostname, username, remote_folder_path, local_destination):
     try:
         # Transfer the compressed file to the local machine using scp
         scp_command = f'scp -r {username}@{hostname}:{remote_folder_path} {local_destination}'
+        print(scp_command)
         ex = os.system(scp_command)
 
         print(f"Folder '{remote_folder_path}' transferred successfully. exit with{ex}")
