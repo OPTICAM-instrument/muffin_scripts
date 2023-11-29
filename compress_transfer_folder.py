@@ -20,10 +20,10 @@ def create_directories(username, hostname, remote_folder_path, folder_name):
             try:
                 cdirs_command = f'mkdir {dirlist[i]}'
                 print(cdirs_command)
-                ex_cdirs = subprocess.run(['mkdir', f'{dirlist[i]'],
+                ex_cdirs = subprocess.run(['mkdir', f'{dirlist[i]}'],
                                           capture_output=True, text=True, check=True)
                 print(f'Directory {dirlist[i]} succesfully created')
-                logging.info(f'Directory {dirlist[i]} succesfully created'')
+                logging.info(f'Directory {dirlist[i]} succesfully created')
                              
             except Exception as err:
                 print(f'Failed to create directory, {dirlist[i]} already exists')
@@ -50,6 +50,7 @@ def transfer_folder(hostname, username, remote_folder_path, local_destination):
     except Exception as e:
         print(f"Error: {e}")
         logging.error(f'{e}')
+    return ex_transf
         
 def compress_local_folder(local_file_path, local_destination):
 
@@ -68,6 +69,7 @@ def compress_local_folder(local_file_path, local_destination):
     except Exception as e:
         print(f"Error: {e}")
         logging.error(f'{e}')
+    return ex_complf
 
 def remove_local_folder(local_destination):
     # Remove the folder on the local machine
@@ -82,6 +84,7 @@ def remove_local_folder(local_destination):
     except Exception as e:
         print(f"Error: {e}")
         logging.error(f'{e}')
+        
         
 def remove_remote_folder(hostname, username, remote_folder_path, local_file_path):
     try:
@@ -133,10 +136,10 @@ if __name__ == "__main__":
         # Run the function
         logging.info(f'Start of run for c{cam}')
         create_directories(username, hostname, remote_folder_path, folder_name)
-        transfer_folder(hostname, username, remote_folder_path, local_destination)
-        compress_local_folder(local_file_path, local_destination)
+        ex_transf = transfer_folder(hostname, username, remote_folder_path, local_destination)
+        ex_complf = compress_local_folder(local_file_path, local_destination)
 
         #remove_local_folder(local_destination)
         #remove_remote_folder(hostname, username, remote_folder_path, local_file_path)
         logging.info(f'End of run for c{cam}')
-    logging.info(f'End of script run\n')
+    logging.info('End of script run\n')
